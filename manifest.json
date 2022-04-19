@@ -1,0 +1,26 @@
+{
+  "name": "Shonen Junk - Ranking Extentions",
+  "description": "A chrome extension for Shonen Junk to be able to view official ranking with 2nd party market.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "author": "ZombieBoy",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "/images/icon.png",
+      "32": "/images/icon.png",
+      "48": "/images/icon.png",
+      "128": "/images/icon.png"
+    }
+  },
+  "icons": {
+    "16": "/images/icon.png",
+    "32": "/images/icon.png",
+    "48": "/images/icon.png",
+    "128": "/images/icon.png"
+  },
+  "permissions": ["storage", "activeTab", "scripting"]
+}
