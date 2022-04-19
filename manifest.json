@@ -1,6 +1,6 @@
 {
-  "name": "Shonen Junk - Ranking Extentions",
-  "description": "A chrome extension for Shonen Junk to be able to view official ranking with 2nd party market.",
+  "name": "Shonen Junk - Rarity Tool",
+  "description": "A tool for viewing official rarity in 3rd party NFT markets.",
   "version": "1.0",
   "manifest_version": 3,
   "author": "ZombieBoy",
