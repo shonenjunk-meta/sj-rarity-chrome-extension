@@ -21,8 +21,7 @@ showRanking.addEventListener("click", async () => {
 function startRankingRetrievalProcess() {
   var timer = setInterval(function() {
 
-    chrome.storage.sync.get("color", ({ color }) => {
-      let isOpenSea = document.URL.includes('https://opensea.io/collection/shonen-junk-official');
+    let isOpenSea = document.URL.includes('https://opensea.io/collection/shonen-junk-official');
       let isLooksRare = document.URL.includes('https://looksrare.org/collections/0xF4121a2880c225f90DC3B3466226908c9cB2b085');
       let isRarible = document.URL.includes('https://rarible.com/shonen-junk');
       let isGem = document.URL.includes('https://www.gem.xyz/collection/shonen-junk-official');
@@ -36043,75 +36042,77 @@ function startRankingRetrievalProcess() {
       } else if (isGem) {
         showGemRarity(junkies);
       }
-    });
   }, 1000);
 
   let showOsRarity = function(junkies) {
-    let all = document.getElementsByClassName('AssetCardFooter--name');
+    let all = document.getElementsByClassName('AssetSearchList--asset');
   
     for(let i = 0; i < all.length; ++i) {
-      let tokenId = all[i].innerHTML;
+      let tokenContainer = all[i].firstElementChild.children[1].firstElementChild.firstElementChild.firstElementChild
+      let tokenId = tokenContainer.innerHTML;
+      
       if (isNaN(tokenId)) { continue; }
   
       let rank = junkies.find((junk) => junk.tokenId == tokenId)?.rank;
-      let style = 'style="padding: 5px 8px; border-radius: 20px; color: white; background-color: #5c5c95;';
+      let style = 'style="padding: 0 8px; border-radius: 2px; color: white; background-color: #0065ff; font-size: 11px; white-space: nowrap; border: 1px solid black;';
       if (rank < 1000) {
         style += 'background: yellow; color: #242421;';
       }
-      all[i].innerHTML = tokenId + ` <span ${style}">Rank: ${rank}</span>`;
+      tokenContainer.innerHTML = tokenId + ` <span ${style}"><img width="9px" src="https://i.shinji.xyz/static/shonen-junk/images/favicon.png?v=20220226"> ${rank}</span>`;
     }
   };
 
   let showLrRarity = function(junkies) {
-    let all = document.getElementsByClassName('chakra-text css-f9rjjk');
+    let all = document.getElementsByClassName('lazyload-wrapper');
     
     for(let i = 0; i < all.length; ++i) {
-      let tokenId = all[i].innerHTML.replace('Shonen Junk#', '');
+      let tokenContainer = all[i].firstChild.firstChild.children[1].firstChild;
+      let tokenId = tokenContainer.innerHTML.replace('Shonen Junk#', '');
       if (isNaN(tokenId)) { continue; }
       
       let rank = junkies.find((junk) => junk.tokenId == tokenId)?.rank;
-      let style = 'style="padding: 5px 8px; border-radius: 20px; color: white; background-color: #5c5c95;';
+      let style = 'style="padding: 0 8px; border-radius: 2px; color: white; background-color: #0065ff; font-size: 11px; white-space: nowrap; border: 1px solid black;';
       if (rank < 1000) {
         style += 'background: yellow; color: #242421;';
       }
-      all[i].innerHTML = tokenId + ` <span ${style}">Rank: ${rank}</span>`;
+      tokenContainer.innerHTML = tokenId + ` <span ${style}"><img width="9px" style="display: inline;" src="https://i.shinji.xyz/static/shonen-junk/images/favicon.png?v=20220226"> ${rank}</span>`;
     }
   };
 
   let showRaribleRarity = function(junkies) {
-    let all = document.getElementsByClassName('sc-kMyqmI');
+    let all = document.getElementsByClassName('ReactVirtualized__Grid__innerScrollContainer')[0].children;
 
     for(let i = 0; i < all.length; ++i) {
-      let rankElem = all[i].children[0];
+      let rankElem = all[i].firstChild.children[1].children[1].children[1];
 
       let tokenId = rankElem.innerHTML.replace('Shonen Junk #', '');
-
+      
       if (isNaN(tokenId)) { continue; }
       
       let rank = junkies.find((junk) => junk.tokenId == tokenId)?.rank;
-      let style = 'style="padding: 5px 8px; border-radius: 20px; color: white; background-color: #5c5c95;';
+      let style = 'style="padding: 2px 8px; border-radius: 2px; color: white; background-color: #0065ff; font-size: 13px; white-space: nowrap; border: 1px solid black;';
       if (rank < 1000) {
         style += 'background: yellow; color: #242421;';
       }
-      rankElem.innerHTML = tokenId + ` <span ${style}">Rank: ${rank}</span>`;
+      rankElem.innerHTML = tokenId + ` <span ${style}"><img width="10px" style="display: inline;" src="https://i.shinji.xyz/static/shonen-junk/images/favicon.png?v=20220226"> ${rank}</span>`;
     }
   };
 
   let showGemRarity = function(junkies) {
-    let all = document.querySelectorAll('[data-v-563d9726]');
+    let all = document.getElementsByClassName('nft-card');
 
     for(let i = 0; i < all.length; ++i) {
-      let rankElem = all[i];
+      let rankElem = all[i].children[4].firstChild.firstChild;
       let tokenId = rankElem.innerHTML;
 
       if (isNaN(tokenId)) { continue; }
       
       let rank = junkies.find((junk) => junk.tokenId == tokenId)?.rank;
-      let style = 'style="padding: 5px 8px; border-radius: 20px; color: white; background-color: #5c5c95;';
+      let style = 'style="padding: 0 8px; border-radius: 2px; color: white; background-color: #0065ff; font-size: 13px; white-space: nowrap; border: 1px solid black;';
       if (rank < 1000) {
         style += 'background: yellow; color: #242421;';
       }
-      rankElem.innerHTML = tokenId + ` <span ${style}">Rank: ${rank}</span>`;
+      rankElem.innerHTML = tokenId + ` <span ${style}"><img width="9px" style="display: inline;" src="https://i.shinji.xyz/static/shonen-junk/images/favicon.png?v=20220226"> ${rank}</span>`;
     }
   };
 }
